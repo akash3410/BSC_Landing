@@ -1,0 +1,8 @@
+<form method="GET">
+    <input name="id" placeholder="Enter Tracking ID">
+    <button>Track</button>
+</form>
+
+{% if order %}
+    <p>Status: {{ order.status }}</p>
+{% endif %}

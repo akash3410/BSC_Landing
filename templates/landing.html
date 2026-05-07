@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Premium Sofa Cover</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* LENS */
+      #lens {
+        background-size: 200%;
+        border: 2px solid #6366f1;
+        border-radius: 50%;
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        pointer-events: none;
+        display: none;
+        z-index: 10;
+      }
+
+      /* IMAGE SMOOTH */
+      #productImage {
+        transition: opacity 0.2s ease;
+      }
+    </style>
+    <style>
+      @media (max-width: 768px) {
+        #lens {
+          width: 80px;
+          height: 80px;
+          border: 2px solid #6366f1;
+        }
+      }
+    </style>
+
+    <!-- Transformation -->
+    <style>
+      #container {
+        touch-action: none;
+      }
+
+      #topLayer img,
+      #container img {
+        object-position: center;
+        will-change: clip-path;
+      }
+    </style>
+  </head>
+
+  <body class="bg-white text-gray-800">
+    <!-- TOP BAR -->
+    <div class="bg-red-600 text-white text-center py-2 text-sm">
+      🔥 Limited Offer: Only <span id="stock">7</span> items left!
+    </div>
+
+    <!-- HERO -->
+    <section class="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-10">
+      <!-- IMAGE SECTION -->
+      <div>
+        <!-- MAIN IMAGE -->
+        <div class="relative overflow-hidden rounded-xl shadow-lg">
+          <img
+            id="productImage"
+            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7"
+            class="w-full"
+          />
+
+          <!-- LENS -->
+          <div id="lens"></div>
+        </div>
+
+        <!-- THUMBNAILS -->
+        <div class="flex gap-3 mt-4">
+          <img
+            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7"
+            class="thumb w-20 h-20 object-cover rounded border-2 border-indigo-500 cursor-pointer hover:scale-105 transition"
+            onclick="changeImage(this)"
+          />
+
+          <img
+            src="https://images.unsplash.com/photo-1616627981450-6c3a1b03c7e2"
+            class="thumb w-20 h-20 object-cover rounded border cursor-pointer hover:scale-105 transition"
+            onclick="changeImage(this)"
+          />
+
+          <img
+            src="https://images.unsplash.com/photo-1615874959474-d609969a20ed"
+            class="thumb w-20 h-20 object-cover rounded border cursor-pointer hover:scale-105 transition"
+            onclick="changeImage(this)"
+          />
+        </div>
+      </div>
+
+      <!-- PRODUCT INFO -->
+      <div>
+        <h1 class="text-4xl font-bold">Premium Fujian Jacquard Sofa Cover</h1>
+
+        <p class="text-yellow-500 mt-2">★★★★★ (1,250+ Reviews)</p>
+
+        <!-- PRICE -->
+        <div class="mt-4">
+          <span class="text-3xl font-bold text-green-600">৳1,290</span>
+          <span class="line-through text-gray-400 ml-2">৳1,800</span>
+        </div>
+
+        <!-- TIMER -->
+        <div class="mt-3 text-red-600 font-semibold">
+          ⏳ Offer ends in: <span id="timer">10:00</span>
+        </div>
+
+        <!-- FEATURES -->
+        <ul class="mt-5 space-y-2 text-gray-600">
+          <li>✔ Premium Jacquard Fabric</li>
+          <li>✔ Fits All Sofa Types</li>
+          <li>✔ Easy Wash & Durable</li>
+        </ul>
+
+        <!-- CTA -->
+        <button
+          class="mt-6 w-full bg-green-600 text-white py-4 rounded-lg font-bold hover:bg-green-700 transition"
+        >
+          🛒 Order Now
+        </button>
+
+        <a
+          href="https://wa.me/880XXXXXXXXXX"
+          class="mt-3 block text-center border py-3 rounded-lg hover:bg-gray-100"
+        >
+          💬 WhatsApp Order
+        </a>
+
+        <p class="text-sm text-gray-500 mt-3">
+          ✔ Cash on Delivery | ✔ 7 Days Replacement
+        </p>
+      </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section class="bg-gray-50 text-center py-6">
+      <p class="font-semibold">🔥 18 people ordered in last 24 hours</p>
+    </section>
+
+    <!-- WHY CHOOSE - CONVERSION PSYCHOLOGY -->
+    <section class="py-24 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- HEADLINE -->
+        <h2 class="text-3xl md:text-4xl font-bold text-center">
+          Transform Your Living Room in Minutes — Not Years
+        </h2>
+
+        <p class="text-center text-gray-500 mt-3 max-w-2xl mx-auto">
+          Designed for modern homes that want a premium look without expensive
+          renovation.
+        </p>
+
+        <!-- TRUST BADGES -->
+        <div class="flex flex-wrap justify-center gap-3 mt-6 text-sm">
+          <span class="bg-white px-4 py-2 rounded-full shadow"
+            >✔ Trusted by 10,000+ Customers</span
+          >
+          <span class="bg-white px-4 py-2 rounded-full shadow"
+            >✔ Premium Export Quality Fabric</span
+          >
+          <span class="bg-white px-4 py-2 rounded-full shadow"
+            >✔ Cash on Delivery Available</span
+          >
+        </div>
+
+        <!-- SLIDER VIEWPORT -->
+        <div class="mt-14 overflow-hidden relative select-none">
+          <!-- TRACK -->
+          <div id="whyTrack" class="flex gap-6 w-max will-change-transform">
+            <div class="w-[280px] bg-white p-6 rounded-2xl shadow">
+              <div class="text-3xl">🏠</div>
+              <h3 class="font-bold mt-3">Instant Upgrade</h3>
+              <p class="text-gray-500 text-sm mt-2">
+                Transforms old sofa instantly
+              </p>
+            </div>
+
+            <div class="w-[280px] bg-white p-6 rounded-2xl shadow">
+              <div class="text-3xl">💰</div>
+              <h3 class="font-bold mt-3">Save Money</h3>
+              <p class="text-gray-500 text-sm mt-2">
+                No need for new furniture
+              </p>
+            </div>
+
+            <div class="w-[280px] bg-white p-6 rounded-2xl shadow">
+              <div class="text-3xl">🛡️</div>
+              <h3 class="font-bold mt-3">Protection</h3>
+              <p class="text-gray-500 text-sm mt-2">
+                Protects from dust & stains
+              </p>
+            </div>
+
+            <div class="w-[280px] bg-white p-6 rounded-2xl shadow">
+              <div class="text-3xl">⚡</div>
+              <h3 class="font-bold mt-3">Fast Install</h3>
+              <p class="text-gray-500 text-sm mt-2">Setup in 60 seconds</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS - TRUST PSYCHOLOGY ENGINE -->
+    <section class="py-24 bg-white">
+      <div class="max-w-4xl mx-auto px-6">
+        <!-- HEADLINE -->
+        <h2 class="text-3xl font-bold text-center">
+          Real People. Real Results.
+        </h2>
+
+        <p class="text-center text-gray-500 mt-2">
+          Customers who upgraded their home experience
+        </p>
+
+        <!-- SOCIAL PROOF SUMMARY -->
+        <div class="flex justify-center mt-6">
+          <div
+            class="bg-green-50 text-green-700 px-6 py-3 rounded-full font-semibold"
+          >
+            ⭐ 4.9/5 Average Rating from 1,250+ Buyers
+          </div>
+        </div>
+
+        <!-- SCROLL AREA -->
+        <div
+          class="mt-12 h-[300px] overflow-y-auto pr-2 space-y-6 scroll-smooth"
+        >
+          <!-- REVIEW -->
+          <div
+            class="bg-gray-50 p-6 rounded-2xl shadow border-l-4 border-green-500"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold"
+                >
+                  A
+                </div>
+                <div>
+                  <p class="font-semibold">Ayesha Rahman</p>
+                  <p class="text-xs text-gray-500">First-time Buyer</p>
+                </div>
+              </div>
+              <p class="text-yellow-500">★★★★★</p>
+            </div>
+
+            <p class="text-gray-600 mt-4">
+              I was unsure at first, but after using it I immediately ordered
+              another set.
+            </p>
+          </div>
+          <!-- REVIEW -->
+          <div
+            class="bg-gray-50 p-6 rounded-2xl shadow border-l-4 border-green-500"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold"
+                >
+                  A
+                </div>
+                <div>
+                  <p class="font-semibold">Ayesha Rahman</p>
+                  <p class="text-xs text-gray-500">First-time Buyer</p>
+                </div>
+              </div>
+              <p class="text-yellow-500">★★★★★</p>
+            </div>
+
+            <p class="text-gray-600 mt-4">
+              I was unsure at first, but after using it I immediately ordered
+              another set.
+            </p>
+          </div>
+          <!-- REVIEW -->
+          <div
+            class="bg-gray-50 p-6 rounded-2xl shadow border-l-4 border-green-500"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold"
+                >
+                  A
+                </div>
+                <div>
+                  <p class="font-semibold">Ayesha Rahman</p>
+                  <p class="text-xs text-gray-500">First-time Buyer</p>
+                </div>
+              </div>
+              <p class="text-yellow-500">★★★★★</p>
+            </div>
+
+            <p class="text-gray-600 mt-4">
+              I was unsure at first, but after using it I immediately ordered
+              another set.
+            </p>
+          </div>
+          <!-- REVIEW -->
+          <div
+            class="bg-gray-50 p-6 rounded-2xl shadow border-l-4 border-green-500"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold"
+                >
+                  A
+                </div>
+                <div>
+                  <p class="font-semibold">Ayesha Rahman</p>
+                  <p class="text-xs text-gray-500">First-time Buyer</p>
+                </div>
+              </div>
+              <p class="text-yellow-500">★★★★★</p>
+            </div>
+
+            <p class="text-gray-600 mt-4">
+              I was unsure at first, but after using it I immediately ordered
+              another set.
+            </p>
+          </div>
+          <!-- REVIEW -->
+          <div
+            class="bg-gray-50 p-6 rounded-2xl shadow border-l-4 border-green-500"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold"
+                >
+                  A
+                </div>
+                <div>
+                  <p class="font-semibold">Ayesha Rahman</p>
+                  <p class="text-xs text-gray-500">First-time Buyer</p>
+                </div>
+              </div>
+              <p class="text-yellow-500">★★★★★</p>
+            </div>
+
+            <p class="text-gray-600 mt-4">
+              I was unsure at first, but after using it I immediately ordered
+              another set.
+            </p>
+          </div>
+          <!-- REVIEW -->
+          <div
+            class="bg-gray-50 p-6 rounded-2xl shadow border-l-4 border-green-500"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold"
+                >
+                  A
+                </div>
+                <div>
+                  <p class="font-semibold">Ayesha Rahman</p>
+                  <p class="text-xs text-gray-500">First-time Buyer</p>
+                </div>
+              </div>
+              <p class="text-yellow-500">★★★★★</p>
+            </div>
+
+            <p class="text-gray-600 mt-4">
+              I was unsure at first, but after using it I immediately ordered
+              another set.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUE OVERLAY IMAGE SLIDER -->
+    <section class="max-w-6xl mx-auto px-6 py-20">
+      <h2 class="text-3xl font-bold text-center mb-10">
+        See Real Before & After Transformation
+      </h2>
+
+      <div
+        id="container"
+        class="relative max-w-4xl mx-auto h-[450px] rounded-2xl overflow-hidden shadow-2xl select-none"
+      >
+        <!-- BASE IMAGE (BOTTOM) -->
+        <img
+          src="https://m.media-amazon.com/images/I/61Ai1FbkItL._AC_UF894,1000_QL80_.jpg"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <!-- TOP IMAGE (OVERLAY - CONTROLLED) -->
+        <div
+          id="topLayer"
+          class="absolute inset-0 w-full h-full"
+          style="clip-path: inset(0 50% 0 0)"
+        >
+          <img
+            src="https://zeotexbd.com/storage/products/171/turkey-sofa-cover-3-seater-green-zeo-tex-bd-003001-1742980066.webp"
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <!-- CENTER LINE -->
+        <div
+          class="absolute top-0 left-1/2 w-[2px] h-full bg-white/60 shadow-lg"
+        ></div>
+
+        <!-- HANDLE -->
+        <div
+          id="handle"
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center cursor-ew-resize"
+        >
+          ⇆
+        </div>
+
+        <!-- LABELS -->
+        <div
+          class="absolute top-4 left-4 bg-black/60 text-white px-3 py-1 rounded"
+        >
+          After
+        </div>
+
+        <div
+          class="absolute top-4 right-4 bg-black/60 text-white px-3 py-1 rounded"
+        >
+          Before
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="bg-green-600 text-white text-center py-12">
+      <h2 class="text-3xl font-bold">Don’t Miss This Offer!</h2>
+      <button class="mt-5 bg-white text-green-600 px-8 py-3 rounded font-bold">
+        Order Now
+      </button>
+    </section>
+
+    <!-- MOBILE STICKY CTA -->
+    <div class="fixed bottom-0 w-full bg-white p-4 shadow md:hidden">
+      <button class="w-full bg-green-600 text-white py-3 rounded font-bold">
+        Order Now - ৳1,290
+      </button>
+    </div>
+
+    <!-- JS -->
+    <script>
+      const img = document.getElementById("productImage");
+      const lens = document.getElementById("lens");
+      const zoomLevel = 2;
+
+      /* STOCK */
+      let stock = 7;
+      setInterval(() => {
+        if (stock > 2) stock--;
+        document.getElementById("stock").innerText = stock;
+      }, 15000);
+
+      /* TIMER */
+      let time = 600;
+      setInterval(() => {
+        let m = Math.floor(time / 60);
+        let s = time % 60;
+        document.getElementById("timer").innerText =
+          `${m}:${s < 10 ? "0" : ""}${s}`;
+        time--;
+      }, 1000);
+
+      /* IMAGE CHANGE (AMAZON STYLE) */
+      function changeImage(el) {
+        img.style.opacity = 0.3;
+
+        setTimeout(() => {
+          img.src = el.src;
+          img.style.opacity = 1;
+        }, 150);
+
+        document.querySelectorAll(".thumb").forEach((t) => {
+          t.classList.remove("border-indigo-500");
+          t.classList.add("border");
+        });
+
+        el.classList.add("border-indigo-500");
+      }
+    </script>
+
+    <script>
+      window.addEventListener("load", () => {
+        const track = document.getElementById("whyTrack");
+
+        track.innerHTML += track.innerHTML;
+
+        let position = 0;
+        let speed = 0.5;
+        let isPaused = false;
+        let isDragging = false;
+
+        let startX = 0;
+
+        function animate() {
+          if (!isPaused && !isDragging) {
+            position += speed;
+
+            const halfWidth = track.scrollWidth / 2;
+
+            // 🔥 FIX: keep position safe
+            if (position >= halfWidth) position = 0;
+            if (position < 0) position = halfWidth;
+
+            track.style.transform = `translateX(-${position}px)`;
+          }
+
+          requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        /* 🖱️ HOVER */
+        track.addEventListener("mouseenter", () => {
+          isPaused = true;
+        });
+
+        track.addEventListener("mouseleave", () => {
+          isPaused = false;
+        });
+
+        /* 📱 TOUCH */
+        track.addEventListener("touchstart", (e) => {
+          isDragging = true;
+          startX = e.touches[0].clientX;
+        });
+
+        track.addEventListener("touchmove", (e) => {
+          if (!isDragging) return;
+
+          let moveX = e.touches[0].clientX;
+          let diff = startX - moveX;
+
+          position += diff;
+
+          track.style.transform = `translateX(-${position}px)`;
+
+          startX = moveX;
+        });
+
+        track.addEventListener("touchend", () => {
+          isDragging = false;
+
+          // 🔥 FORCE resume (main fix)
+          setTimeout(() => {
+            isPaused = false;
+          }, 50);
+        });
+      });
+    </script>
+
+    <!-- Zoom Lens -->
+    <script>
+      let isTouch = false;
+
+      /* DETECT MOBILE */
+      if ("ontouchstart" in window) {
+        isTouch = true;
+      }
+
+      /* SHOW LENS */
+      function showLens() {
+        lens.style.display = "block";
+      }
+
+      /* HIDE LENS */
+      function hideLens() {
+        lens.style.display = "none";
+      }
+
+      /* MOUSE EVENTS (PC) */
+      img.addEventListener("mouseenter", showLens);
+      img.addEventListener("mouseleave", hideLens);
+      img.addEventListener("mousemove", moveLens);
+
+      /* TOUCH EVENTS (MOBILE) */
+      img.addEventListener("touchstart", (e) => {
+        showLens();
+        moveLens(e.touches[0]);
+      });
+
+      img.addEventListener("touchmove", (e) => {
+        moveLens(e.touches[0]);
+      });
+
+      img.addEventListener("touchend", hideLens);
+
+      /* CORE LENS FUNCTION */
+      function moveLens(e) {
+        const rect = img.getBoundingClientRect();
+
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+
+        /* KEEP INSIDE BOUNDS */
+        if (x < 0) x = 0;
+        if (y < 0) y = 0;
+        if (x > rect.width) x = rect.width;
+        if (y > rect.height) y = rect.height;
+
+        /* RESPONSIVE LENS SIZE */
+        const lensSize = isTouch ? 200 : 120;
+        lens.style.width = lensSize + "px";
+        lens.style.height = lensSize + "px";
+
+        lens.style.left = x - lensSize / 2 + "px";
+        lens.style.top = y - lensSize / 2 + "px";
+
+        lens.style.backgroundImage = `url(${img.src})`;
+
+        lens.style.backgroundSize =
+          rect.width * zoomLevel + "px " + rect.height * zoomLevel + "px";
+
+        lens.style.backgroundPosition =
+          "-" +
+          (x * zoomLevel - lensSize / 2) +
+          "px -" +
+          (y * zoomLevel - lensSize / 2) +
+          "px";
+      }
+    </script>
+
+    <!-- Vertical Scroll (Review) -->
+    <script>
+      const reviewTrack = document.getElementById("reviewTrack");
+
+      let scrollY = 0;
+
+      setInterval(() => {
+        scrollY += 110;
+
+        reviewTrack.style.transition = "transform 0.8s ease-in-out";
+        reviewTrack.style.transform = `translateY(-${scrollY}px)`;
+
+        if (scrollY > reviewTrack.scrollHeight / 2) {
+          setTimeout(() => {
+            reviewTrack.style.transition = "none";
+            scrollY = 0;
+            reviewTrack.style.transform = "translateY(0)";
+          }, 800);
+        }
+      }, 2500);
+    </script>
+
+    <!-- Transformation -->
+    <script>
+      const container = document.getElementById("container");
+      const handle = document.getElementById("handle");
+      const topLayer = document.getElementById("topLayer");
+
+      let target = 50;
+      let current = 50;
+      let dragging = false;
+
+      function animate() {
+        current += (target - current) * 0.12;
+
+        // 👉 KEY: overlay reveal control
+        topLayer.style.clipPath = `inset(0 ${100 - current}% 0 0)`;
+
+        handle.style.left = current + "%";
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      function setPosition(clientX) {
+        const rect = container.getBoundingClientRect();
+        let x = clientX - rect.left;
+
+        x = Math.max(0, Math.min(rect.width, x));
+
+        target = (x / rect.width) * 100;
+      }
+
+      // Desktop
+      handle.addEventListener("mousedown", () => (dragging = true));
+      window.addEventListener("mouseup", () => (dragging = false));
+
+      window.addEventListener("mousemove", (e) => {
+        if (!dragging) return;
+        setPosition(e.clientX);
+      });
+
+      // Mobile
+      container.addEventListener("touchstart", (e) => {
+        dragging = true;
+        setPosition(e.touches[0].clientX);
+      });
+
+      container.addEventListener("touchend", () => {
+        dragging = false;
+      });
+
+      container.addEventListener("touchmove", (e) => {
+        if (!dragging) return;
+        setPosition(e.touches[0].clientX);
+      });
+
+      // Click support
+      container.addEventListener("click", (e) => {
+        setPosition(e.clientX);
+      });
+    </script>
+  </body>
+</html>
