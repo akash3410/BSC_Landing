@@ -1,2 +1,2 @@
 # BSC_Landing
-Developing a landing page with django
+A landing page for "Bangladesh Sofa Cover"
