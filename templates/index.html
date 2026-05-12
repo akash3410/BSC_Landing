@@ -1,11 +1,625 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    {% load static %}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>ECommarce — Templates</title>
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <!-- My CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <script src="https://unpkg.com/feather-icons"></script>
 </head>
+
 <body>
-    <h1>Hello, Welcome to BSC!</h1>
+
+  <!-- Popup Banner -->
+  <div id="popupBanner" class="fixed inset-0 flex justify-center items-center z-50 hidden bg-black/50 transition-opacity duration-500 ease-out">
+
+    <!-- Modal Card -->
+    <div class="relative w-11/12 max-w-11/12 h-5/6 max-h-5/6 rounded-2xl shadow-2xl overflow-hidden transform scale-95 transition-all duration-500 ease-out">
+
+      <!-- Background Image + Overlay -->
+      <div class="absolute inset-0 bg-cover bg-center popup">
+        <div class="absolute inset-0 bg-black/40"></div>
+      </div>
+
+      <!-- Content -->
+      <div class="relative p-8 text-center text-white flex flex-col items-center justify-center h-full">
+        <!-- Close Button -->
+        <button id="closeBanner" class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-gray-300 z-50">&times;</button>
+
+        <h2 class="text-2xl sm:text-3xl font-extrabold mb-4 drop-shadow-lg">
+          Special Offer!
+        </h2>
+        <p class="text-xs sm:text-xl mb-6 drop-shadow-md max-w-2xl">
+          Get 20% off on your first order. Limited time only — don’t miss out!
+        </p>
+        <a href="category_details.html"
+          class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold py-1 px-5 rounded-xl text-lg sm:text-xl hover:scale-105 transform transition">
+          Shop Now
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOP NAVBAR -->
+  <nav class="fixed top-0 left-0 w-full shadow-md z-40 bg-gradient-to-r from-[#DCDCDC] via-[#FFFFF0] via-[#F8F8FF] to-[#DCDCDC] transition-transform duration-500" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="h-16 flex items-center">
+
+        <!-- Mobile hamburger -->
+        <button id="menu-btn" class="md:hidden text-gray-700 p-2">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Logo -->
+        <div class="w-full md:w-1/2 flex items-center justify-center md:justify-start gap-3">
+          <a href="index.html" class=""><img src="{% static 'img/logo_fin.png' %}" alt="Logo" class="w-14 h-14 object-contain transition-transform duration-500 hover:scale-110 hover:drop-shadow-[0_0_10px_#dddddd] rounded-full shadow p-1"></a>
+          <a href="index.html" class=" text-2xl font-extrabold uppercase tracking-wide hidden md:block text-blue-900 hover:text-blue-800 transition-all duration-300 playwrite transition-transform duration-500 hover:scale-110 rounded-full px-5 py-2 shadow">Dress Hub</a>
+        </div>
+
+        <!-- Right Icon -->
+        <div class="flex items-end justify-end w-1/2 space-x-3">
+          <!-- desktop icons (Hidden on mobile) -->
+          <div class="hidden md:flex items-center space-x-3">
+
+            <!-- Desktop search icon (toggles the expanding input) -->
+            <div class="relative">
+              <button id="desktop-search-btn" class="text-blue-900 hover:text-blue-800 transform hover:scale-110 transition duration-300 rounded-full p-1 shadow hover:bg-gray-100">
+                <i class="fa-solid fa-magnifying-glass text-xl mt-1"></i>
+              </button>
+
+              <!-- expanding search (desktop) -->
+              <div id="desktop-search"
+                class="hidden md:flex items-center overflow-hidden w-0 transition-all duration-300 absolute right-0 top-full -mt-10">
+                <form id="desktop-search-form" class="flex items-center w-full">
+                  <input id="desktop-search-input" type="text"
+                    class="w-full border border-blue-300 rounded-l px-3 py-2 focus:outline-none"
+                    placeholder="Search..." />
+                  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-r hover:bg-blue-700">Search</button>
+                </form>
+              </div>
+            </div>
+
+            <!-- cart icon -->
+            <a href="cart.html" class="text-blue-900 hover:text-blue-800 transform hover:scale-110 transition duration-300 rounded-full p-2 shadow hover:bg-gray-100">
+              <span class="ms-3 me-2 text-gray-500">&#2547;  1000</span>
+              <i class="fa-solid fa-cart-shopping text-xl"></i>
+            </a>
+
+            <!-- Wishlist -->
+            <a href="profile.html?tab=wishlist" data-content="wishlist" class="text-blue-900 hover:text-blue-800 transform hover:scale-110 transition duration-300 rounded-full p-1 shadow hover:bg-gray-100">
+              <i class="fa-solid fa-heart text-2xl"></i>
+            </a>
+
+            <!-- user icon -->
+            <a href="login_form.html" class="text-blue-900 hover:text-blue-800 transform hover:scale-110 transition duration-300 rounded-full p-1 shadow hover:bg-gray-100">
+              <i class="fa-solid fa-user text-xl"></i>
+            </a>
+
+          </div>
+
+          <!-- Mobile top-right cart icon -->
+          <div class="md:hidden">
+            <a href="cart.html" class="text-blue-900 p-2">
+              <span class="me-3 text-gray-500">&#2547;  0</span>
+              <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Horizontal Role -->
+      <div class="absolute left-0 w-full">
+        <hr class="border-t-2 border-gray-300 shadow">
+      </div>
+
+      <!-- menu desktop / hamburger mobile -->
+      <div class="w-full flex justify-center items-center md:mt-5 md:mb-2">
+
+        <!-- Desktop menu links -->
+        <div class="hidden md:flex space-x-6 items-center">
+          <!-- <div class="relative group">
+            <a href="#" class="text-gray-700 hover:text-blue-600 uppercase text-xl">Home</a>
+          </div> -->
+
+          <!-- dropdown -->
+          <div class="relative group inline-block">
+            <button class="text-gray-700 group-hover:text-blue-600 uppercase text-lg text-blue-600 font-semibold">
+              MENS
+            </button>
+
+            <!-- dropdown menu -->
+            <div
+              class="absolute left-1/2 top-full hidden group-hover:grid grid-cols-4 gap-6 bg-white shadow-lg rounded-lg p-6 w-[800px] bg-gradient-to-r from-[#DCDCDC] via-[#FFFFF0] via-[#F8F8FF] to-[#DCDCDC] transform -translate-x-1/2 z-50">
+
+              <!-- part 1 -->
+              <div>
+                <h3 class="font-semibold text-gray-800 mb-2">Clothing</h3>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Shirts</a>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">T-Shirts</a>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Pants</a>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Jeans</a>
+              </div>
+
+              <!-- part 2 -->
+              <div>
+                <h3 class="font-semibold text-gray-800 mb-2">Accessories</h3>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Watches</a>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Belts</a>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Wallets</a>
+              </div>
+
+              <!-- part 3 -->
+              <div>
+                <h3 class="font-semibold text-gray-800 mb-2">Shoes</h3>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Sneakers</a>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Formal</a>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Sandals</a>
+              </div>
+
+              <!-- part 4 (image) -->
+              <div class="flex items-center justify-center">
+                <img src="{% static 'img/na1.webp' %}" alt="Mens Collection"
+                  class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+              </div>
+
+            </div>
+          </div>
+
+          <!-- dropdown -->
+          <div class="relative group inline-block">
+            <button class="text-gray-700 group-hover:text-blue-600 uppercase text-lg text-blue-600 font-semibold">
+              SUNNAH ESSENTIAL
+            </button>
+
+            <!-- dropdown menu -->
+            <div class="absolute left-1/2 top-full hidden group-hover:grid grid-cols-3 gap-6 bg-white shadow-lg rounded-lg p-6 w-[800px] bg-gradient-to-r from-[#DCDCDC] via-[#FFFFF0] via-[#F8F8FF] to-[#DCDCDC] transform -translate-x-1/2 z-50">
+
+              <!-- part 1 -->
+              <div>
+                <h3 class="font-semibold text-gray-800 mb-2">Clothing</h3>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Shirts</a>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">T-Shirts</a>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Pants</a>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Jeans</a>
+              </div>
+
+              <!-- part 2 -->
+              <div>
+                <h3 class="font-semibold text-gray-800 mb-2">Accessories</h3>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Watches</a>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Belts</a>
+                <a href="category_details.html" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Wallets</a>
+              </div>
+
+              <!-- part 4 (image) -->
+              <div class="flex items-end justify-end right-0">
+                <img src="{% static 'img/cat2.jpeg' %}" alt="Mens Collection"
+                  class="h-full shadow-md hover:scale-105 transition-transform duration-300">
+              </div>
+
+            </div>
+          </div>
+
+          <!-- dropdown -->
+          <div class="relative group">
+            <button class="text-gray-700 group-hover:text-blue-600 uppercase text-lg text-blue-600 font-semibold">ACCESSORIES</button>
+            <div class="absolute left-0 hidden group-hover:block bg-white shadow-lg rounded w-80 bg-gradient-to-r from-[#DCDCDC] via-[#FFFFF0] via-[#F8F8FF] to-[#DCDCDC]">
+              <a class="block px-4 py-2 text-gray-700 hover:bg-gradient-to-t from-[#DCDCDC] via-[#FFFFF0] via-[#F8F8FF] to-[#DCDCDC] hover:text-blue-600" href="category_details.html"> Bags </a>
+              <a class="block px-4 py-2 text-gray-700 hover:bg-gradient-to-t from-[#DCDCDC] via-[#FFFFF0] via-[#F8F8FF] to-[#DCDCDC] hover:text-blue-600"
+                href="category_details.html">Watches</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE SLIDE MENU -->
+  <div id="mobile-menu" class="fixed top-0 left-0 w-72 h-full bg-white shadow transform -translate-x-full transition-transform duration-300 z-50 md:hidden rounded-[10px]">
+
+    <!-- Header -->
+    <div
+      class="p-4 border-b flex justify-between items-center bg-gradient-to-r from-[#DCDCDC] via-[#FFFFF0] via-[#F8F8FF] to-[#DCDCDC]">
+      <a href="index.html" class="text-lg font-semibold text-blue-900 uppercase playwrite">Dress hub</a>
+      <button id="close-menu" class="text-lg">✕</button>
+    </div>
+
+    <!-- Menu Content -->
+    <div class="p-4 space-y-4 bg-gradient-to-r from-[#DCDCDC] via-[#FFFFF0] via-[#F8F8FF] to-[#DCDCDC] overflow-y-auto h-[calc(100%-64px)]">
+
+      <!-- Main: MENS -->
+      <div>
+        <button class="flex justify-between items-center w-full font-medium submenu-btn">
+          MENS <span class="text-blue-600 toggle-icon">+</span>
+        </button>
+        <div class="submenu hidden pl-4 mt-2 space-y-3">
+
+          <!-- Clothing -->
+          <div>
+            <button class="flex justify-between items-center w-full submenu-btn font-medium">
+              Clothing <span class="text-blue-600 toggle-icon">+</span>
+            </button>
+            <div class="submenu hidden pl-4 mt-2 space-y-2">
+              <a href="category_details.html" class="block">Shirts</a>
+              <a href="category_details.html" class="block">T-Shirts</a>
+              <a href="category_details.html" class="block">Pants</a>
+              <a href="category_details.html" class="block">Jeans</a>
+            </div>
+          </div>
+
+          <!-- Accessories -->
+          <div>
+            <button class="flex justify-between items-center w-full submenu-btn font-medium">
+              Accessories <span class="text-blue-600 toggle-icon">+</span>
+            </button>
+            <div class="submenu hidden pl-4 mt-2 space-y-2">
+              <a href="category_details.html" class="block">Watches</a>
+              <a href="category_details.html" class="block">Belts</a>
+              <a href="category_details.html" class="block">Wallets</a>
+            </div>
+          </div>
+
+          <!-- Shoes -->
+          <div>
+            <button class="flex justify-between items-center w-full submenu-btn font-medium">
+              Shoes <span class="text-blue-600 toggle-icon">+</span>
+            </button>
+            <div class="submenu hidden pl-4 mt-2 space-y-2">
+              <a href="category_details.html" class="block">Sneakers</a>
+              <a href="category_details.html" class="block">Formal</a>
+              <a href="category_details.html" class="block">Sandals</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main: Sunnah Essentials -->
+      <div>
+        <button class="flex justify-between items-center w-full font-medium submenu-btn">
+          Sunnah Essentials <span class="text-blue-600 toggle-icon">+</span>
+        </button>
+        <div class="submenu hidden pl-4 mt-2 space-y-3">
+
+          <!-- Clothing -->
+          <div>
+            <button class="flex justify-between items-center w-full submenu-btn font-medium">
+              Clothing <span class="text-blue-600 toggle-icon">+</span>
+            </button>
+            <div class="submenu hidden pl-4 mt-2 space-y-2">
+              <a href="category_details.html" class="block">Shirts</a>
+              <a href="category_details.html" class="block">T-Shirts</a>
+              <a href="category_details.html" class="block">Pants</a>
+              <a href="category_details.html" class="block">Jeans</a>
+            </div>
+          </div>
+
+          <!-- Accessories -->
+          <div>
+            <button class="flex justify-between items-center w-full submenu-btn font-medium">
+              Accessories <span class="text-blue-600 toggle-icon">+</span>
+            </button>
+            <div class="submenu hidden pl-4 mt-2 space-y-2">
+              <a href="category_details.html" class="block">Watches</a>
+              <a href="category_details.html" class="block">Belts</a>
+              <a href="category_details.html" class="block">Wallets</a>
+            </div>
+          </div>
+
+          <!-- Shoes -->
+          <div>
+            <button class="flex justify-between items-center w-full submenu-btn font-medium">
+              Shoes <span class="text-blue-600 toggle-icon">+</span>
+            </button>
+            <div class="submenu hidden pl-4 mt-2 space-y-2">
+              <a href="category_details.html" class="block">Sneakers</a>
+              <a href="category_details.html" class="block">Formal</a>
+              <a href="category_details.html" class="block">Sandals</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main: Accessories -->
+      <div>
+        <button class="flex justify-between items-center w-full font-medium submenu-btn">
+          Accessories <span class="text-blue-600 toggle-icon">+</span>
+        </button>
+        <div class="submenu hidden pl-4 mt-2 space-y-3">
+            <a href="category_details.html" class="block capitalize">bags</a>
+            <a href="category_details.html" class="block capitalize">Wathches</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MOBILE SEARCH BAR (slide down) -->
+  <div id="mobile-search-bar" class="fixed top-16 left-0 w-full bg-white p-3 shadow-md -translate-y-full transform transition-transform duration-300 z-40 md:hidden">
+    <form id="mobile-search-form" class="flex gap-2">
+      <input id="mobile-search-input" type="text" placeholder="Search..."
+        class="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none" />
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Search</button>
+    </form>
+  </div>
+
+  <!-- BOTTOM NAV (Mobile) -->
+  <div class="fixed bottom-0 left-0 w-full bg-gradient-to-r from-[#DCDCDC] via-[#FFFFF0] via-[#F8F8FF] to-[#DCDCDC] border-t shadow-md flex justify-around py-2 md:hidden z-50">
+    <a href="index.html" class="flex flex-col items-center text-gray-700 text-xs">
+      <i class="fa-regular fa-house text-lg mb-1"></i>
+      Home
+    </a>
+
+    <button id="mobile-search-btn" class="flex flex-col items-center text-gray-700 text-xs">
+      <i id="mobile-search-icon" class="fa-solid fa-magnifying-glass text-lg mb-1"></i>
+      <span id="mobile-search-text">Search</span>
+    </button>
+
+    <a href="profile.html?tab=wishlist" class="flex flex-col items-center text-gray-700 text-xs">
+      <i class="fa-regular fa-heart text-lg mb-1"></i>
+      Wishlist
+    </a>
+
+    <a href="login_form.html" class="flex flex-col items-center text-gray-700 text-xs">
+      <i class="fa-regular fa-user text-lg mb-1"></i>
+      Profile
+    </a>
+  </div>
+
+  <!-- Slider -->
+  <div class="relative w-full max-w-full shadow-lg overflow-hidden gradient-bottom-border md:top-14">
+
+    <!-- Slider container -->
+    <div id="slider" class="flex transition-transform duration-700 ease-in-out w-full mt-16">
+
+      <!-- Slide 1 -->
+      <div class="w-full flex-shrink-0 relative">
+        <img src="{% static 'img/one.webp' %}" class="w-full h-64 md:h-auto object-cover" />
+
+        <!-- Text Content -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/40">
+          <h2
+            class="slide-text text-white text-2xl md:text-4xl font-bold opacity-0 translate-y-10 transition-all duration-700 ease-out">
+            Welcome to Our Store
+          </h2>
+          <p
+            class="slide-text text-white text-sm md:text-lg mt-2 opacity-0 translate-y-10 transition-all duration-700 ease-out delay-200">
+            Best Products at the Best Price
+          </p>
+          <a href="category_details.html">
+            <button
+              class="slide-text mt-4 px-4 py-2 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-400 opacity-0 translate-y-10 transition-all duration-700 ease-out delay-400">
+              Shop Now
+            </button>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="w-full flex-shrink-0 relative">
+        <img src="{% static 'img/one.webp' %}" class="w-full h-64 md:h-auto object-cover" />
+
+        <!-- Text Content -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/40">
+          <h2
+            class="slide-text text-white text-2xl md:text-4xl font-bold opacity-0 translate-y-10 transition-all duration-700 ease-out">
+            New Collection 2025
+          </h2>
+          <p
+            class="slide-text text-white text-sm md:text-lg mt-2 opacity-0 translate-y-10 transition-all duration-700 ease-out delay-100">
+            Trendy & Stylish Products
+          </p>
+          <a href="category_details.html">
+            <button
+              class="slide-text mt-4 px-4 py-2 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-400 opacity-0 translate-y-10 transition-all duration-700 ease-out delay-400">
+              Explore Now
+            </button>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="w-full flex-shrink-0 relative">
+        <img src="{% static 'img/one.webp' %}" class="w-full h-64 md:h-auto object-cover" />
+
+        <!-- Text Content -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/40">
+          <h2
+            class="slide-text text-white text-2xl md:text-4xl font-bold opacity-0 translate-y-10 transition-all duration-700 ease-out">
+            Summer Sale Up To 50%
+          </h2>
+          <p
+            class="slide-text text-white text-sm md:text-lg mt-2 opacity-0 translate-y-10 transition-all duration-700 ease-out delay-200">
+            Grab Your Favorite Items
+          </p>
+          <a href="category_details.html">
+            <button
+              class="slide-text mt-4 px-4 py-2 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-400 opacity-0 translate-y-10 transition-all duration-700 ease-out delay-400">
+              Shop Sale
+            </button>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Navigation buttons -->
+    <button id="prev"
+      class="absolute top-1/2 left-3 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60">❮</button>
+    <button id="next"
+      class="absolute top-1/2 right-3 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60">❯</button>
+
+    <!-- Dots -->
+    <div class="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      <span class="dot w-3 h-3 bg-white rounded-full cursor-pointer"></span>
+      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
+      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
+    </div>
+  </div>
+
+  <!-- Why us Card -->
+  <div class="glass-gradient text-black flex items-center justify-center md:mt-10 p-0">
+    <h4 class="w-20 mx-1 md:mx-4 tex-bold text-base uppercase rounded"> Why Us</h4>
+    <div class="relative w-full overflow-hidden py-6 md:mt-4">
+      <div id="carousel" class="flex gap-6 w-max">
+        <!-- Cards -->
+        <div class="card card-gradient w-80 h-40 flex items-center justify-center text-center p-2">
+          <i data-feather="star" class="icon-hover mr-2"></i>
+          <h3 class="text-sm font-semibold transform translate-y-1 transition-all">Card One</h3>
+        </div>
+
+        <div class="card card-gradient w-80 h-40 flex items-center justify-center text-center p-2">
+          <i data-feather="heart" class="icon-hover mr-2"></i>
+          <h3 class="text-sm font-semibold transform translate-y-1 transition-all">Card Two</h3>
+        </div>
+
+        <div class="card card-gradient w-80 h-40 flex items-center justify-center text-center p-2">
+          <i data-feather="zap" class="icon-hover mr-2"></i>
+          <h3 class="text-sm font-semibold transform translate-y-1 transition-all">Card Three</h3>
+        </div>
+
+        <div class="card card-gradient w-80 h-40 flex items-center justify-center text-center p-2">
+          <i data-feather="thumbs-up" class="icon-hover mr-2"></i>
+          <h3 class="text-sm font-semibold transform translate-y-1 transition-all">Card Four</h3>
+        </div>
+
+        <div class="card card-gradient w-80 h-40 flex items-center justify-center text-center p-2">
+          <i data-feather="thumbs-up" class="icon-hover mr-2"></i>
+          <h3 class="text-sm font-semibold transform translate-y-1 transition-all">Card Five</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Shop by Categories -->
+  <section class="bg-gradient-to-t from-gray-100 via-gray-200 to-gray-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 scroll-animate opacity-0 translate-y-10 transition-all duration-500 ease-out">
+      
+      <!-- Heading -->
+      <h2 class="text-3xl font-extrabold text-blue-900 tracking-wider mb-8 text-center">
+        Explore by Category
+        <i class="fa-solid fa-layer-group bg-clip-text text-transparent bg-gradient-to-t from-green-500 via-red-500 to-green-500"></i>
+      </h2>
+
+      <!-- Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Card 1 -->
+        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
+          <img src="img/cat4.webp" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
+            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
+            <p class="text-base">Smooth zoom and animated text on hover.</p>
+          </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
+          <img src="img/cat1.jpg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
+            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
+            <p class="text-base">Smooth zoom and animated text on hover.</p>
+          </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
+          <img src="img/cat2.jpeg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
+            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
+            <p class="text-base">Smooth zoom and animated text on hover.</p>
+          </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
+          <img src="img/cat3.jpeg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
+            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
+            <p class="text-base">Smooth zoom and animated text on hover.</p>
+          </div>
+        </a>
+
+        <!-- Card 5 -->
+        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
+          <img src="img/cat1.jpg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
+            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
+            <p class="text-base">Smooth zoom and animated text on hover.</p>
+          </div>
+        </a>
+
+        <!-- Card 6 -->
+        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
+          <img src="img/cat2.jpeg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
+            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
+            <p class="text-base">Smooth zoom and animated text on hover.</p>
+          </div>
+        </a>
+
+        <!-- Card 7 -->
+        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
+          <img src="img/cat1.jpg" alt="Card 7" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
+            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
+            <p class="text-base">Smooth zoom and animated text on hover.</p>
+          </div>
+        </a>
+
+        <!-- Card 8 -->
+        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
+          <img src="img/cat2.jpeg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
+            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
+            <p class="text-base">Smooth zoom and animated text on hover.</p>
+          </div>
+        </a>
+
+        <!-- Card 9 -->
+        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
+          <img src="img/cat3.jpeg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
+            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
+            <p class="text-base">Smooth zoom and animated text on hover.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- My JS -->
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/profile.js' %}"></script>
+  <script src="{% static 'js/login_reg.js' %}"></script>
 </body>
+
 </html>
