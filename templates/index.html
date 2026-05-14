@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    {% load static %}
+  {% load static %}
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
@@ -38,7 +38,8 @@
     <div class="relative w-11/12 max-w-11/12 h-5/6 max-h-5/6 rounded-2xl shadow-2xl overflow-hidden transform scale-95 transition-all duration-500 ease-out">
 
       <!-- Background Image + Overlay -->
-      <div class="absolute inset-0 bg-cover bg-center popup">
+      <div class="absolute inset-0 bg-cover bg-center popup" 
+          style="background-image: url('img/one.webp');">
         <div class="absolute inset-0 bg-black/40"></div>
       </div>
 
@@ -181,7 +182,7 @@
 
               <!-- part 4 (image) -->
               <div class="flex items-center justify-center">
-                <img src="{% static 'img/na1.webp' %}" alt="Mens Collection"
+                <img src="img/na1.webp" alt="Mens Collection"
                   class="rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
               </div>
 
@@ -216,7 +217,7 @@
 
               <!-- part 4 (image) -->
               <div class="flex items-end justify-end right-0">
-                <img src="{% static 'img/cat2.jpeg' %}" alt="Mens Collection"
+                <img src="img/cat2.jpeg" alt="Mens Collection"
                   class="h-full shadow-md hover:scale-105 transition-transform duration-300">
               </div>
 
@@ -357,7 +358,8 @@
   </div>
 
   <!-- MOBILE SEARCH BAR (slide down) -->
-  <div id="mobile-search-bar" class="fixed top-16 left-0 w-full bg-white p-3 shadow-md -translate-y-full transform transition-transform duration-300 z-40 md:hidden">
+  <div id="mobile-search-bar"
+    class="fixed top-16 left-0 w-full bg-white p-3 shadow-md transform -translate-y-full transition-transform duration-300 z-40 md:hidden">
     <form id="mobile-search-form" class="flex gap-2">
       <input id="mobile-search-input" type="text" placeholder="Search..."
         class="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none" />
@@ -400,12 +402,10 @@
 
         <!-- Text Content -->
         <div class="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/40">
-          <h2
-            class="slide-text text-white text-2xl md:text-4xl font-bold opacity-0 translate-y-10 transition-all duration-700 ease-out">
+          <h2 class="slide-text text-white text-2xl md:text-4xl font-bold opacity-0 translate-y-10 transition-all duration-700 ease-out">
             Welcome to Our Store
           </h2>
-          <p
-            class="slide-text text-white text-sm md:text-lg mt-2 opacity-0 translate-y-10 transition-all duration-700 ease-out delay-200">
+          <p class="slide-text text-white text-sm md:text-lg mt-2 opacity-0 translate-y-10 transition-all duration-700 ease-out delay-200">
             Best Products at the Best Price
           </p>
           <a href="category_details.html">
@@ -512,109 +512,12 @@
           <i data-feather="thumbs-up" class="icon-hover mr-2"></i>
           <h3 class="text-sm font-semibold transform translate-y-1 transition-all">Card Five</h3>
         </div>
+
       </div>
     </div>
   </div>
 
-    <!-- Shop by Categories -->
-  <section class="bg-gradient-to-t from-gray-100 via-gray-200 to-gray-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 scroll-animate opacity-0 translate-y-10 transition-all duration-500 ease-out">
-      
-      <!-- Heading -->
-      <h2 class="text-3xl font-extrabold text-blue-900 tracking-wider mb-8 text-center">
-        Explore by Category
-        <i class="fa-solid fa-layer-group bg-clip-text text-transparent bg-gradient-to-t from-green-500 via-red-500 to-green-500"></i>
-      </h2>
-
-      <!-- Cards Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-        <!-- Card 1 -->
-        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
-          <img src="img/cat4.webp" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
-          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
-            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
-            <p class="text-base">Smooth zoom and animated text on hover.</p>
-          </div>
-        </a>
-
-        <!-- Card 2 -->
-        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
-          <img src="img/cat1.jpg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
-          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
-            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
-            <p class="text-base">Smooth zoom and animated text on hover.</p>
-          </div>
-        </a>
-
-        <!-- Card 3 -->
-        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
-          <img src="img/cat2.jpeg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
-          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
-            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
-            <p class="text-base">Smooth zoom and animated text on hover.</p>
-          </div>
-        </a>
-
-        <!-- Card 4 -->
-        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
-          <img src="img/cat3.jpeg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
-          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
-            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
-            <p class="text-base">Smooth zoom and animated text on hover.</p>
-          </div>
-        </a>
-
-        <!-- Card 5 -->
-        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
-          <img src="img/cat1.jpg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
-          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
-            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
-            <p class="text-base">Smooth zoom and animated text on hover.</p>
-          </div>
-        </a>
-
-        <!-- Card 6 -->
-        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
-          <img src="img/cat2.jpeg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
-          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
-            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
-            <p class="text-base">Smooth zoom and animated text on hover.</p>
-          </div>
-        </a>
-
-        <!-- Card 7 -->
-        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
-          <img src="img/cat1.jpg" alt="Card 7" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
-          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
-            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
-            <p class="text-base">Smooth zoom and animated text on hover.</p>
-          </div>
-        </a>
-
-        <!-- Card 8 -->
-        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
-          <img src="img/cat2.jpeg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
-          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
-            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
-            <p class="text-base">Smooth zoom and animated text on hover.</p>
-          </div>
-        </a>
-
-        <!-- Card 9 -->
-        <a href="category_details.html" class="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl cursor-pointer group block">
-          <img src="img/cat3.jpeg" alt="Card 1" class="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110 max-md:scale-105">
-          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-6 text-center opacity-0 translate-y-5 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0">
-            <h3 class="text-xl font-bold mb-2">Card Title 1</h3>
-            <p class="text-base">Smooth zoom and animated text on hover.</p>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-
+  
 
   <!-- My JS -->
   <script src="{% static 'js/script.js' %}"></script>

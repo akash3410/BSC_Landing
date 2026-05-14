@@ -31,22 +31,89 @@ window.addEventListener("scroll", function () {
   scrollElements.forEach(el => observer.observe(el));
 
 
-  // ---------------- Mobile slide menu toggle ----------------
-  document.addEventListener("DOMContentLoaded", function() {
-    const menuBtn = document.getElementById('menu-btn');
-    const closeMenu = document.getElementById('close-menu');
-    const mobileMenu = document.getElementById('mobile-menu');
+// ---------------- Mobile slide menu toggle ----------------
+document.addEventListener("DOMContentLoaded", function() {
+  const menuBtn = document.getElementById('menu-btn');
+  const closeMenu = document.getElementById('close-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
 
-    menuBtn?.addEventListener('click', () => mobileMenu?.classList.remove('-translate-x-full'));
-    closeMenu?.addEventListener('click', () => mobileMenu?.classList.add('-translate-x-full'));
+  menuBtn?.addEventListener('click', () => mobileMenu?.classList.remove('-translate-x-full'));
+  closeMenu?.addEventListener('click', () => mobileMenu?.classList.add('-translate-x-full'));
 
-    document.querySelectorAll('.submenu-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const submenu = btn.nextElementSibling;
-        submenu.classList.toggle('hidden');
-        const sign = btn.querySelector('span');
-        if(sign) sign.textContent = submenu.classList.contains('hidden') ? '+' : '-';
-      });
+  document.querySelectorAll('.submenu-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const submenu = btn.nextElementSibling;
+      submenu.classList.toggle('hidden');
+      const sign = btn.querySelector('span');
+      if(sign) sign.textContent = submenu.classList.contains('hidden') ? '+' : '-';
+    });
+  });
+
+  // ---------------- Mobile & Desktop search toggle ----------------
+  const mobileSearchBtn = document.getElementById('mobile-search-btn');
+  const mobileSearchBar = document.getElementById('mobile-search-bar');
+  const desktopSearchBtn = document.getElementById('desktop-search-btn');
+  const desktopSearchWrap = document.getElementById('desktop-search');
+  const desktopSearchInput = document.getElementById('desktop-search-input');
+
+  let isOpen = false;
+
+  const searchIcon = document.getElementById("mobile-search-icon");
+  const searchText = document.getElementById("mobile-search-text");
+
+  mobileSearchBtn?.addEventListener("click", () => {
+    isOpen = !isOpen;
+
+    if (isOpen) {
+      // SHOW BAR
+      mobileSearchBar?.classList.remove(
+        "-translate-y-full",
+        "opacity-0",
+        "invisible"
+      );
+
+      mobileSearchBar?.classList.add(
+        "translate-y-0",
+        "opacity-100",
+        "visible"
+      );
+
+      // CHANGE ICON
+      searchIcon?.classList.replace(
+        "fa-magnifying-glass",
+        "fa-xmark"
+      );
+
+      if (searchText) searchText.innerText = "Close";
+
+      // FOCUS INPUT
+      setTimeout(() => {
+        document.getElementById('mobile-search-input')?.focus();
+      }, 200);
+
+    } else {
+
+      // HIDE BAR
+      mobileSearchBar?.classList.remove(
+        "translate-y-0",
+        "opacity-100",
+        "visible"
+      );
+
+      mobileSearchBar?.classList.add(
+        "-translate-y-full",
+        "opacity-0",
+        "invisible"
+      );
+
+      // CHANGE ICON BACK
+      searchIcon?.classList.replace(
+        "fa-xmark",
+        "fa-magnifying-glass"
+      );
+
+      if (searchText) searchText.innerText = "Search";
+    }
   });
 
   desktopSearchBtn?.addEventListener('click', (e) => {
@@ -63,39 +130,6 @@ window.addEventListener("scroll", function () {
     if (!desktopSearchWrap?.contains(e.target) && !desktopSearchBtn?.contains(e.target)) {
       desktopSearchWrap?.classList.replace('w-64', 'w-0');
     }
-  });
-
-  document.addEventListener("DOMContentLoaded", function () {
-
-    const mobileSearchBtn = document.getElementById('mobile-search-btn');
-    const mobileSearchBar = document.getElementById('mobile-search-bar');
-    const searchIcon = document.getElementById("mobile-search-icon");
-    const searchText = document.getElementById("mobile-search-text");
-
-    let isOpen = false;
-
-    mobileSearchBtn?.addEventListener("click", () => {
-      isOpen = !isOpen;
-
-      if (isOpen) {
-        mobileSearchBar.classList.remove("-translate-y-full");
-        mobileSearchBar.classList.add("translate-y-0");
-
-        searchIcon.classList.remove("fa-magnifying-glass");
-        searchIcon.classList.add("fa-xmark");
-
-        searchText.innerText = "Close";
-      } else {
-        mobileSearchBar.classList.add("-translate-y-full");
-        mobileSearchBar.classList.remove("translate-y-0");
-
-        searchIcon.classList.add("fa-magnifying-glass");
-        searchIcon.classList.remove("fa-xmark");
-
-        searchText.innerText = "Search";
-      }
-    });
-
   });
 
   // ---------------- resize fix ----------------
